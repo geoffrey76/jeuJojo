@@ -1,0 +1,91 @@
+
+#contactArea{
+    /* padding-top: 80px; */
+    width: 100%;
+}
+#personalInfo{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 90%;
+    margin-left: 5%;
+}
+#personalInfo>input{
+    font-size: 1.3em;
+}
+#comments{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 90%;
+    margin-left: 5%;
+    height: 200px;
+}
+#comments>textarea{
+    height: 100%;
+    font-size: 1.3em;
+}
+label{
+    color: white;
+    font-size: 1.3em;
+    margin-bottom: 3px;
+}
+.requiredStar{
+    color: red;
+}
+.contactInput{
+    margin: 5px 10px 10px 0px;
+    height: 20px;
+    font-size: 1.3em;   
+}
+#sendContactButton{
+    margin-left: 5%;
+    margin-top: 40px;
+    width: 90%;
+    height: 50px;
+    background-color: crimson;
+    color: white;
+    font-size: 1.3em;
+}
+#sendContactButton:hover{
+    cursor: pointer;
+    background-color:  rgb(255, 182, 182);
+    color: black;
+}
+#sendContactButton:active{
+    background-color: crimson;
+    color:white;
+}
+#mailResponse{
+    position: absolute;
+    top: 170px;
+    left: 20px;
+    color: white;
+}
+#eMailContainer, #commentsContainer{
+    display: flex;
+    flex-direction: row;
+}
+.requiredItem{
+    border: 6px solid red;
+}
+#requiredEMail, #requiredComment{
+    visibility: hidden;
+    color: rgb(183, 0, 0);
+    font-size: 1em;
+}
+ /* ===== START MEDIA QUERY CONTACT FORM ===== */
+ @media screen and (min-width: 1024px){
+ #contactArea{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+#personalInfo, #comments{
+    width: 42.5%;
+    margin: 0;
+}
+ }
+/* ===== END MEDIA QUERY FORM ===== */

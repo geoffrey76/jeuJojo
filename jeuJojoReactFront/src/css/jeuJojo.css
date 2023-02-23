@@ -1,0 +1,624 @@
+/* ========== GENERAL PART =========*/
+:root{
+    box-sizing: border-box;
+   
+}
+*{
+    box-sizing: inherit;
+}
+body{
+    margin: 0;
+}
+#mainPart{
+   min-height: 100vh;
+    background-image: linear-gradient(to bottom right, rgba(220, 20, 60, 1), rgba(220, 20, 60, 0));
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1rem;
+    min-width: 350px;
+}
+ul{
+    list-style-type: none;
+    padding: 0;
+}
+button:hover{
+    cursor: pointer;
+}
+/* ========== END OF GENERAL PART =========*/
+/* ========== START OF THE HEADER =========*/
+header{
+    min-width: 330px;
+    background-color: crimson;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 60px;
+    display: grid;
+    grid-template-columns: 60px 1fr 60px;
+    grid-template-rows: 60px 100px;
+    width: 100%;
+    color: white;
+    z-index: 1000;
+}
+#logoImg{
+    background-color: white;
+    padding: 0px;
+    height: 60px;
+    width: 60px;
+}
+header h1{
+    display: flex;
+    padding-left: 20px;
+    align-items: center;
+    font-size: 20px;
+}
+header>a{
+    display: flex;
+    align-items: center;
+}
+header a:hover{
+    color: rgb(77, 76, 76);
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+a:hover{
+    cursor: pointer;
+}
+header>nav{
+    height: 0px;
+    grid-row: 2 / 2;
+    grid-column: span 3;
+}
+#mainMenu{
+    background-color: crimson;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-top: 0px;
+    font-size: 1.3em;
+    max-height: 0px;
+    overflow: hidden;
+    transition: 0.5s max-height;
+}
+#mainMenu li{
+    display: block;
+    text-align: right;
+    padding-right: 20px;
+    margin-top: 0px;
+    margin-bottom: 15px;
+}
+#mainMenu.visible{
+    max-height: 300px;
+}
+#gameMenu{
+    z-index: 1001;
+    font-size: 0.6em;
+    max-height: 0px;
+    overflow: hidden;
+    transition: 0.8s max-height;
+}
+#gameMenu.visible{
+    max-height: 300px;
+}
+#gameMenu a{
+    text-align: right;
+}
+#gameMenu li {
+    background-color: crimson;
+    height: 35px;
+    padding: 7px 0;
+    margin-bottom: 0;
+    padding-right: 0px;
+   padding-bottom: 0px;
+}
+#game:hover{
+    cursor: pointer;
+}
+        /*---------- Start Menu Hamburger -----------*/
+#hamburgerContainer:hover{
+    cursor: pointer;
+}
+#hamburgerContainer{
+    position: absolute;
+    margin-top: 2px;
+    right: 15px;
+    height: 55px;
+    padding: 8px 0px 8px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.hamburgerBar{
+    width: 50px;
+    height: 7px;
+    background-color: white;
+    border-radius: 5px;
+}
+.hamburgerBar1Move{
+    animation: hamburger1 0.5s forwards;
+}
+.hamburgerBar2Move{
+    visibility: hidden;
+}
+.hamburgerBar3Move{
+    animation: hamburger3 0.5s forwards;
+}
+@keyframes hamburger1{
+    100% {transform : translateY(17px) rotate(45deg);}
+}
+@keyframes hamburger3{
+    100% {transform: translateY(-17px) rotate(-45deg);}
+}
+.hamburgerBar1MoveBack{
+    animation: hamburger1MoveBack 0.5s forwards;
+}
+.hamburgerBar2MoveBack{
+    visibility: visible;
+}
+.hamburgerBar3MoveBack{
+    animation: hamburger3MoveBack 0.5s forwards;
+}
+@keyframes hamburger1MoveBack{
+    0% {transform : translateY(17px) rotate(45deg);}
+    100% {transform : translateY(0px) rotate(0deg);}
+}
+@keyframes hamburger3MoveBack{
+    0% {transform: translateY(-17px) rotate(-45deg);}
+    100% {transform: translateY(0px) rotate(0deg);}
+}
+        /*------------- End Hamburger Menu ---------
+/* ========= END OF HEADER ==================================================================================*/
+/* ========= START OF MAIN PART ============================================================================*/
+main{
+    padding: 60px 20px 40px 20px;
+}
+main h1{
+    margin-top: 0;
+    padding: 10px;
+    font-variant:small-caps;
+    color: white;
+    text-align: center;
+    font-size: 1.7em;
+}
+main p{
+    text-align: center;
+    color: white;
+    font-size: 1.3em;
+}
+#mainNombre label{
+    padding-left: 3px;
+}
+/* main>li{
+    font-size: 1.6em;
+    margin: 3px;
+} */
+.transButton{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.indexButton{
+    padding: 0;
+    width: 100%;
+    margin: 40px 0px;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+/* .indexButton:hover{
+    opacity: 0.5;
+} */
+.indexButton:hover .transButton{
+    background-color: rgba(255, 255, 255, 0.7);
+} 
+#numberButton{
+    background-image: url(../images/backGroundNumbers.jpg);
+}
+#penduButton{
+    background-image: url(../images/alphabet_letters.preview.jpg);
+}
+#colorBallButton{
+    background-image: url(../images/colorBall.jpg);
+    background-size: 20%;
+}
+#memoryButton{
+    background-image: url(../images/Memory.png);
+    background-size: 20%;
+}
+.buttonTitle{
+    font-size: 2em;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+.transBox{
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 2px;  
+    margin: 50px 5px;
+}
+.transBox p{
+    color: rgb(0, 0, 0);
+    padding-right: 0;
+    padding-bottom: 2px;
+}
+.boutonStart{
+        background-color: crimson;
+        color: white;
+        margin: auto;
+        margin-top: 20px;
+        padding: 40px;
+        height: 60px;
+        font-size: 1.5em;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+}
+.boutonStart:hover{
+    cursor: pointer;
+    color:black;
+    background-color: rgb(255, 182, 182);
+}
+.restartZone{
+   
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+.restartZone:hover{
+    cursor: none;
+}
+/* ========== END MAIN GENERAL =========*/
+/* ========== START NUMBER ==========*/
+.trouverNombre{
+    min-height: 100vh;
+    background-image: url(../images/backGroundNumbers.jpg);
+    background-size: cover;
+}
+#mainNombre, .restartZone{
+    width: 350px;
+    margin: auto;
+    padding-top: 50px;
+}
+#mainNombre p{
+    margin: 0px;
+}
+#nbrAttempt{
+    text-align: right;
+    font-size: .8em;
+}
+#propNumber{
+    
+    width: 60px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: grey;
+}
+#propNumberLabel{
+    color: black;
+    font-size: 1em;
+    margin-right: 47px;
+}
+#notANumber{
+    color: crimson;
+    font-size: .7em;
+    visibility: hidden;
+}
+#gameButton{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+#submitNumber{
+    background-color: crimson;
+    color: white;
+    margin: auto;
+    margin-left: auto;
+    padding: 40px;
+    height: 60px;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 350px;
+}
+.restart{   
+    background-color: crimson;
+    color: white;
+    margin: auto;
+    margin-left: auto;
+    padding: 40px;
+    height: 60px;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 350px;
+    visibility: hidden;
+}
+#submitNumber:hover, .restart:hover{
+    color:black;
+    background-color: rgb(255, 182, 182);
+}
+#stopNumber{
+    margin-top: 5px;
+    background-color: rgb(170, 170, 170);
+}
+#stopNumber:hover{
+    background-color: rgb(255, 182, 182);
+}
+#stopNumber > a:hover{
+    color:black;
+}
+/* ========== END NUMBER ==========*/
+/* ========== START PENDU ==========*/
+.mainPendu{
+    min-height: 100vh;
+    padding: 50px 5px;
+    background-image: url(../images/alphabet_letters.preview.jpg);
+    background-size: cover;    
+}
+.lienImg{
+    display: block;
+    text-align: end;
+    color: rgb(78, 70, 70);
+}
+#centralPartPendu{
+    margin: auto;
+    height: 100%;
+    max-width: 600px;  
+    display: grid;
+    grid-template-rows:  1fr 30px 1fr;
+}
+
+#secondColumnPendu{
+    margin: auto;
+    text-align: center;
+}
+#alphabet{
+    margin-top: 20px;
+    max-height: 100px;
+}
+#alphabet>p{
+    margin: 0;
+}
+.alphabetButton{
+    border-radius: 50%;
+    font-size: 20px;
+    margin:5px;
+    width: 30px;
+    color: black;
+    padding: 0;
+}
+.alphabetButton:hover{
+    color: white;
+    background-color: rgb(75, 73, 73);
+}
+.answerButton{
+    text-transform: uppercase;
+    border-radius: 50%;
+    font-size: 20px;
+    color: grey;
+    background-color: grey;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+}
+.answerButton:hover{
+    cursor: default;
+}
+.goodLettersButton{
+    text-transform: uppercase;
+    border-radius: 50%;
+    font-size: 20px;
+    /* margin: 5px; */
+    color: white;
+    background-color: green;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+}
+.wrongLettersButton{
+    text-transform: uppercase;
+    border-radius: 50%;
+    font-size: 20px;
+    margin: 5px;
+    width: 30px;
+    background-color: red;
+    color: white;
+    opacity: 0.8;
+    padding: 0;
+}
+.wrongLetters:hover{
+    cursor: not-allowed;
+}
+.imgPendu{
+    margin: auto;
+    width: 250px;
+}
+/* ========== END PENDU ========== */
+/* ========== START CONTACT FORM ==========*/
+/* #formContact{
+    color: white;
+    padding: 0 60px; 
+}    
+#comments{
+    height: 147px;
+    resize: none;
+}
+
+#formContact > div >div{
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+}
+.required:after{
+    font-size: .8em;
+    content: " *";
+    color: red;
+}
+#formContact button{
+    background-color: crimson;
+    color: white;
+    width: 100%;
+    height: 40px;
+}
+#formContact button:hover{
+    cursor: pointer;
+    background-color:  rgb(255, 182, 182);
+    color: black;
+}
+#formContact button:active{
+    background-color: crimson;
+    color:white;
+} */
+/* ========== END CONTACT FORM ==========*/
+/* ========== START FOOTER ==========*/
+footer{
+    min-width: 380px;
+    background-color: crimson;
+    position:fixed;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    height: 40px;
+    color: white;
+    font-size: .7em;
+}
+/* ========== END FOOTER ========== */
+/* ========== START MEDIA QUERY ========== */
+@media screen and (min-width: 1024px){
+    /* ===== START MEDIA QUERY HEADER ===== */
+    #hamburgerContainer{
+        display: none;
+    }
+    header{
+        
+        grid-template-columns: 60px 1fr 1fr;
+        grid-template-rows: 60px 0px;
+    }
+    header nav{
+        grid-row: 1 / 1;
+        grid-column: 3 / 3;
+    }
+    #mainMenu{
+        max-height: 300px;
+        width: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        height: 60px;
+        margin: 0px;
+        padding: 0;
+        padding-right: 20px;
+    }
+    #mainMenu a{
+        border: 0;
+    }
+    #mainMenu li{
+        padding: 0;
+        margin-left: 30px;
+        margin-bottom: 0;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    #gameMenu{
+        position: absolute;
+        padding: 0;
+        top: 60px;
+        z-index: 1001;
+    }
+    #gameMenu>li {
+        padding-right: 5px;
+        margin-top:0;
+        justify-content: flex-end;
+        align-items: center;
+        font-size: 1.3em;
+        height: 40px;
+    }
+    /* ===== END MEDIA QUERY HEADER ===== */
+    /* ===== START MEDIA QUERY MAIN ===== */
+    main{
+         padding: 100px 80px;
+     }
+    main h1{
+        font-size: 3em;
+    }
+    main p{
+        font-size: 1.5em;
+    }
+    /* .buttonTitle{
+        font-size: 1.5em;
+    } */
+    .boutonStart{
+        font-size: 2.8em;
+    }
+    .indexButton{
+        height: 120px;
+    }
+    /* ===== END MEDIA QUERY MAIN ===== */
+    /* ===== START MEDIA QUERY PENDU ===== */
+    #centralPartPendu{
+        padding: 20px;
+        max-width: 900px;
+        display: grid;
+        grid-template-columns: 30% 70%;
+        grid-template-rows: 500px 0 0;
+    }
+    #secondColumnPendu{
+        margin: auto;
+    }
+    #alphabet{
+        grid-column: 2 / 2;
+        grid-row: 1 / 1;
+    }
+    .alphabetButton{
+        width: 40px;
+        font-size: 30px;
+    }
+    #result{
+        margin-bottom: 40px;
+        grid-column: span 2;
+    }
+    .answerButton{
+        height: 40px;
+        margin: 2px;
+        width: 40px;
+        font-size: 30px;
+    }
+    .goodLettersButton{
+        font-size: 30px;
+        width: 40px;
+        height: 40px;
+    }
+    .wrongLettersButton{
+        font-size: 30px;
+        width: 40px;
+    }
+    .restart{
+        grid-column: span 2;
+    }
+    /* ===== END MEDIA QUERY PENDU ===== */
+    /* ===== START MEDIA QUERY CONTACT FORM ===== */
+    #formContact{
+        display: grid;
+        grid-template-columns:  1fr 1fr;
+        grid-gap: 20px;
+        padding: 0px 60px;
+    }
+    #formContact button{
+        grid-column: span 2;
+    }
+    /* ===== END MEDIA QUERY FORM ===== */
+}
+/* ========== END MEDIA QUERY ========== */

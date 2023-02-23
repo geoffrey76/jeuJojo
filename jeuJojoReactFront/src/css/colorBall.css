@@ -1,0 +1,236 @@
+:root{
+    box-sizing: border-box;
+}
+*{
+    box-sizing: inherit;
+}
+
+/* ************************************* START PAGE OF EXPLANATION *************************** */
+#mainColorBallInfo{
+    background-image: linear-gradient(to bottom right, rgba(220, 20, 60, 1), rgba(220, 20, 60, 0));
+    padding-top: 60px;
+}
+#mainColorBallInfo ul{
+    list-style-type: disc;
+    list-style-position: outside;
+    margin-left: 20px;
+    text-align: left;
+}
+/*---------Set color of the markers of the list ---------*/
+#mainColorBallInfo ul li:nth-child(1){  
+    color: red;
+}
+#mainColorBallInfo ul li:nth-child(2){  
+    color: blue;
+}
+#mainColorBallInfo ul li:nth-child(3){  
+    color: yellow;
+}
+#mainColorBallInfo ul li:nth-child(4){  
+    color: green;
+}
+#mainColorBallInfo ul li:nth-child(5){  
+    color: black;
+}
+#mainColorBallInfo ul li:nth-child(6){  
+    color: orange;
+}
+#mainColorBallInfo ul li:nth-child(7){  
+    color: red;
+}
+#mainColorBallInfo ul li:nth-child(8){  
+    color: green;
+}
+.whiteText{
+    color: white;
+}
+#infoBalls{
+    width: 300px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.spanGoodPosition{
+    color: green;
+}
+.spanGoodColor{
+    color: black;
+}
+
+/* ************************************ END OF PAGE OF EXPLANATION ******************************* */
+/* ************************************ START OF MAIN PAGE OF THE GAME *************************** */
+#mainColorBall{
+    display: grid;
+    grid-template-columns: auto 300px auto;
+    padding: 60px 0px 40px 0px;
+    background-color: white;
+}
+#mainColorBall>p {
+    text-align: center;
+    color: black;
+    font-size: 20px;
+    margin: 5px 0px 10px 0px;
+}
+/* ================================ Photos left and right of the screen ========================*/
+.side{
+    background-image: url(../images/colorBall.jpg);
+    background-size: 100%;
+    opacity: 0.5; 
+} 
+/* ============================== Main center part =========================================*/
+/* ---------------------- First part with instruction and colors to click -------------------*/
+#centrePart{
+    padding-bottom: 40px;
+}
+.possibleColors{
+    background-color: white;
+    margin: auto;
+    position: sticky;
+    top: -120px;
+}
+.possibleColors>h1{
+    color: black;
+    margin: auto;
+    font-size: 20px;
+}
+#goodPosition{
+    font-size: 15px;
+    color: green;
+}
+#goodColor{
+    font-size: 15px;
+    color: black;
+}
+#backButton{
+    width: 300px;
+    margin: auto;
+    background-color: crimson;
+    color: white;
+    height: 40px;
+    grid-column-start: 1;
+    grid-column-end: 7;
+}
+#backAndBalls{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    grid-template-rows: auto auto;
+    grid-gap: 10px;
+}
+/* ............... Show When won .......................*/
+.gagne{
+    position: sticky;
+    top: 60px;
+}
+.gagne p{
+    color: green;
+    font-size: 40px;
+    text-align: center;
+}
+/* ..................... End of won .................*/
+.possibleBalls{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+.possibleBalls:hover{
+    cursor: pointer;
+}
+#redBall{
+    background-color: red;
+}
+#greenBall{
+    background-color: green;
+}
+#yellowBall{
+    background-color: yellow;
+}
+#blueBall{
+    background-color: blue;
+}
+#blackBall{
+    background-color: black;
+}
+#orangeBall{
+    background-color: orange;
+}
+#possibleColors>p{
+    margin: auto;
+    grid-column-start: 1;
+    grid-column-end: 7;
+    font-size: 15px;
+}
+/* ------------------------------ End of first part -----------------------*/
+/* ------------------------------ Start second part with empty balls and results --------------*/
+#ballGrid{
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    width: 300px;
+    display: grid;
+    grid-template-columns: auto auto auto auto 100px;
+    grid-template-rows: 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px;
+}
+.ball{
+    margin: auto;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 1px;
+}
+.answer{
+    font-size: 30px;
+    margin-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+/* ----------------- End of second part -----------------------------*/
+#restartButtonColorBall{
+    width: 300px;
+    margin: auto;
+    background-color: crimson;
+    color: white;
+    height: 40px;
+    font-size: 1.5em;
+}
+#restart{
+    width: 100%;
+}
+/* ---------------------- Result when lost ---------------------------------------*/
+#resultComment{
+    margin: auto;
+    color: crimson;
+    font-size: 30px;
+    visibility: hidden;
+}
+#resultComment2{
+    margin: 0;
+    color: black;
+    font-size: 20px;
+    visibility: hidden;
+}
+#resultGrid{
+    display: grid;
+    grid-template-columns: auto auto auto auto 100px;
+    margin-bottom: 20px;
+}
+.result{
+    margin: auto;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 1px;
+    visibility: hidden;
+}
+/* --------------------------------- End of result when lost ----------------------------*/
+.invisible{
+    visibility: hidden;
+}
+/* ********************************* END OF MAIN PAGE OF THE GAME *********************** */
+
