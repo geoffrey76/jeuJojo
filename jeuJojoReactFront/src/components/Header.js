@@ -44,10 +44,10 @@ function hideGameMenu(){
     let gameMenu = document.getElementById("gameMenu");
     gameMenu.classList.remove('visible');  
 }
-//---------------------- Refresh the contact page if already on it when pushing contact on the Nav Bar ------ 
-function refreshContactPage(){
-    if (window.location.href="/contact"){window.location.reload()}
-}
+// //---------------------- Refresh the contact page if already on it when pushing contact on the Nav Bar ------ 
+// function refreshContactPage(){
+//     if (window.location.href="/contact"){window.location.reload()}
+// }
 return(
     <header>
         <Link to="/"><img src={logo} alt="Logo JJJ" id="logoImg"/></Link>
@@ -67,7 +67,7 @@ return(
                         <li><Link to="/memory">Memory</Link></li>
                     </nav>
                 </li>
-                <li><Link to="/contact" onClick={refreshContactPage}>Contact</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
                 <li><Link to="/aPropos">A propos</Link></li>
                 <li><Link to="/">Accueil</Link></li>   
             </ul> 
