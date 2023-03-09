@@ -14,6 +14,7 @@ import palm_trees from '../images/imgMemory/palm_trees.png';
 import red_flowers from '../images/imgMemory/red_flowers.png';
 import sunflowers from '../images/imgMemory/sunflowers.png';
 import watermelon from '../images/imgMemory/watermelon.png';
+import MemoryCard from '../components/MemoryCard';
 
 
 const Memory2PlayersReact = ()=>{
@@ -314,7 +315,8 @@ const Memory2PlayersReact = ()=>{
             </aside>
             <main id="memoryGrid" className="memoryGrid">
                 {secondArray.map(listItem =>
-                    <div key={listItem} className="cardContainer" onClick={()=>cardCompare(listItem)}></div>
+                    <MemoryCard key={listItem} onClick={()=>cardCompare(listItem)} />
+                    // <div key={listItem} className="cardContainer" onClick={()=>cardCompare(listItem)}></div>
                 )}
                     
             </main>
