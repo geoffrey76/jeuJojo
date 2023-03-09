@@ -31,13 +31,95 @@ const Memory2PlayersReact = ()=>{
     let wonCardsBNumber = 0;
     let secondArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
     
-    // =========================== Make flash Player A =========================================
-    useEffect(()=>{
-        window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
+    //=====================================Start of the presentation of the cards before the game ===============   
+    useEffect (()=>{
+        let memoryGrid = document.getElementById("memoryGrid");
+        let cardContainer = document.getElementsByClassName ("cardContainer");
+        let j = 0;
+        let memoryGridHeight = memoryGrid.clientHeight;
+        let memoryGridWidth = memoryGrid.clientWidth;
+        let cardHeight = cardContainer[0].offsetHeight;
+        let cardWidth = cardContainer[0].offsetWidth;
+        let deltaX = [];
+        let deltaY = [];
+        let positionX = [];
+        let positionY = [];
+        //----------------------------Remove cursor and not possible to click---------------------------------
+        memoryGrid.classList.add ("cursorInvisible");
+        //------------------------------ Cards are appearing back face (start of the flipping to show the image for a while ----------------------)
+        for (let i=0; i<=23; i=i+2){
+            setTimeout(function(){
+                cardContainer[i].style.animation = "cardFlip 1s forwards";
+                cardContainer[i+1].style.animation = "cardFlip 1s forwards";
+                setTimeout (function(){ 
+                    cardContainer[i].style.backgroundImage = `url(${imageArray[j]})`;
+                    cardContainer[i+1].style.backgroundImage = `url(${imageArray[j]})`;
+                    j=j+1;
+                },300);    
+                //------------------------------- Start of the backflip to show the back face of the card again -----------------
+                setTimeout (function(){
+                    cardContainer[i].style.animation = "cardFlipBack 1s forwards";
+                    cardContainer[i+1].style.animation = "cardFlipBack 1s forwards";
+                    setTimeout(function(){
+                        cardContainer[i].style.removeProperty ("background-Image");
+                        cardContainer[i+1].style.removeProperty ("background-Image");
+                    },300)
+                },2000);    
+            },500);
+        }
+        //----------------------------------- Start of the move of the cards -----------------------------------
+        // PositionX and PositionY are the initial position 
+        // deltaX and deltaY are the number(random number) of pixels to move at every frame
+        setTimeout(function(){
+            for (let i=0; i<=23; i++){
+                positionX[i] = 0;
+                positionY[i] = 0;  
+                deltaX[i] = Math.random()*(7-4)+4;
+                deltaY[i] = Math.random()*(7-4)+4;
+                cardContainer[i].style.zIndex = Math.floor(Math.random()*23);
+            }
+            
+            for (let i=0; i<=23; i++){
+                let initialMove = setInterval(function(){
+                    setTimeout(function(){
+                        clearInterval(initialMove);
+                    },3000)
+                    //------------------------- 2 if ==> to keep the cards within the memoryGrid -----------------------
+                    console.log(i)
+                    if (cardContainer[i].offsetLeft<0 || cardContainer[i].offsetLeft>memoryGridWidth-cardWidth){
+                        deltaX[i] = -deltaX[i];
+                    }
+                    positionX[i] = positionX[i] + deltaX[i];
+                    if (cardContainer[i].offsetTop<0 || cardContainer[i].offsetTop>memoryGridHeight-cardHeight){
+                        deltaY[i] = -deltaY[i]
+                    }
+                    positionY[i] = positionY[i] + deltaY[i];
+                    cardContainer[i].style.left = `${positionX[i]}px`;
+                    cardContainer[i].style.top = `${positionY[i]}px`;
+                },5)
+            }
+        },4000);
+        //------------------------------ Set the cards back to their initial position ---------------------------
+        setTimeout(function(){
+            for (let i=0; i<=23; i++){
+                cardContainer[i].style.left = "0px";
+                cardContainer[i].style.top = "0px";
+            }
+            
+},7050);
+        //-----------------------Cursor visible and possible to click----------------------------------
+        setTimeout(()=>{
+            memoryGrid.classList.remove ("cursorInvisible");
+        },7000)
+        // =========================== Make flash Player A =========================================
         let playerA = document.getElementById("playerA");
         playerAFlash = setInterval(function(){playerA.classList.toggle ("hide")}, 500);
         return ()=>clearInterval(playerAFlash);
-    },[])
+        
+    },[]);
+
+    
     // ============================ Function to make flash player ================================
     function playerFlash(player){
         player.classList.toggle ("hide");
@@ -234,31 +316,7 @@ const Memory2PlayersReact = ()=>{
                 {secondArray.map(listItem =>
                     <div key={listItem} className="cardContainer" onClick={()=>cardCompare(listItem)}></div>
                 )}
-                    {/* <div className="cardContainer" onClick={()=>cardCompare(0)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(1)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(2)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(3)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(4)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(5)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(6)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(7)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(8)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(9)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(10)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(11)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(12)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(13)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(14)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(15)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(16)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(17)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(18)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(19)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(20)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(21)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(22)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(23)}></div> */}
-            
+                    
             </main>
             <aside id="asideRight" className="aside"> 
                 <p id="playerB" className="player">Joueur B: </p>
