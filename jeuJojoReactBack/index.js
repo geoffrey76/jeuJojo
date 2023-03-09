@@ -20,7 +20,7 @@ app.listen(port, () => {
 
 //---------------------------- Send mail contact ------------------------
 app.post('/api/mailForm', async (req, res) => {
-  
+  console.log(req.body)
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const email = req.body.email;
