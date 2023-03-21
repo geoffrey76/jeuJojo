@@ -1,5 +1,6 @@
 #mainPuissance4{
     padding-top: 80px;
+    overscroll-behavior: contain;
 }
 #title{
     color: white;
