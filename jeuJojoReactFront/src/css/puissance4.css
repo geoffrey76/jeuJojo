@@ -46,6 +46,7 @@
     width: 352px;
 }
 #redToken{
+    touch-action: none;
     width: 40px;
     height: 40px;
     background-color: red;
@@ -53,6 +54,7 @@
     z-index: 100;
 }
 #yellowToken{
+    touch-action: none;
     width: 40px;
     height: 40px;
     background-color: yellow;
