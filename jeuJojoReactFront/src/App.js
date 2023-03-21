@@ -10,6 +10,7 @@ import ColorBall from './pages/ColorBall';
 import Memory from './pages/Memory';
 import Memory1Player from './pages/Memory1Player';
 import Memory2PlayersReact from './pages/Memory2PlayersReact';
+import Puissance4 from './pages/Puissance4';
 import './css/jeuJojo.css';
 
 
@@ -29,6 +30,7 @@ function App() {
         <Route path="/memory" element={<Memory />} />
         <Route path="/memory1Player" element={<Memory1Player />} />
         <Route path="/memory2Players" element={<Memory2PlayersReact />} />
+        <Route path="/4aLaSuite" element={<Puissance4 />} />
       </Routes>
     </BrowserRouter>
   );

@@ -8,7 +8,8 @@ const Accueil = ()=>{
         {title:"Trouver un nombre entre 1 et 100", link:"/jeuNombre", id:"numberButton"},
         {title:"Jeu du pendu", link:"/penduIntro", id:"penduButton"},
         {title:"Jeu des balles de couleurs", link:"/colorBallInfo",id:"colorBallButton"},
-        {title:"Memory", link:"/memory", id:"memoryButton"}
+        {title:"Memory", link:"/memory", id:"memoryButton"},
+        {title:"4 à la suite", link:"/4aLaSuite", id:"puissance4Button"}
     ]
     return(
         <div id="mainPart">

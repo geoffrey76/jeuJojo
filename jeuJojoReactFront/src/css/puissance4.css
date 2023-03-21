@@ -1,0 +1,118 @@
+#mainPuissance4{
+    padding-top: 80px;
+}
+#title{
+    color: white;
+    font-size: 1em;
+    width: 352px;
+    margin: auto;
+    text-align: center;
+}
+#chosenColumn{
+    margin: auto;
+    width: 352px;
+    height: 55px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.chosenColumnToken{
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    cursor: pointer;
+}
+#puissance4Grid{
+    margin: auto;
+    width: 352px;
+    display: grid;
+    grid-template-columns: 40px 40px 40px 40px 40px 40px 40px;
+    grid-template-rows: 40px 40px 40px 40px 40px 40px;
+    gap: 9px;
+    background-color: blue;
+    padding: 9px;
+}
+.tokens{
+    border-radius: 50%;
+    z-index: 100;
+    
+}
+#tokenContainer{
+    margin: auto;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    width: 352px;
+}
+#redToken{
+    width: 40px;
+    height: 40px;
+    background-color: red;
+    border-radius: 50%;
+    z-index: 100;
+}
+#yellowToken{
+    width: 40px;
+    height: 40px;
+    background-color: yellow;
+    border-radius: 50%;
+    display: none;
+    z-index: 100;
+}
+#redToken:hover, #yellowToken:hover{
+    cursor: pointer;
+}
+.hide{
+    visibility: hidden; 
+}
+#winner, #noWinner{
+    font-size: 3em;
+    color: white;
+    margin: 20px;
+    text-align: center;
+    display: none;
+}
+
+/* ========== START MEDIA QUERY ========== */
+@media screen and (min-width: 800px){
+    #titleContainer{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        width: 500px;
+    }
+    #title{
+        font-size: 1.5em;
+        width: 400px;
+        margin: 0;
+    }
+    #chosenColumn{
+        width: 492px;
+        height: 75px;
+    }
+    .chosenColumnToken{
+        width: 60px;
+        height: 60px;
+    }
+    #puissance4Grid{
+        width: 492px;
+        grid-template-columns: 60px 60px 60px 60px 60px 60px 60px;
+        grid-template-rows: 60px 60px 60px 60px 60px 60px;
+    }
+    #tokenContainer{
+        width: 60px;
+        margin: 0;
+    }
+    #redToken{
+        width: 60px;
+        height: 60px;
+    }
+    #yellowToken{
+        width: 60px;
+        height: 60px;
+    }
+}
+/* ========== END MEDIA QUERY ========== */

@@ -116,8 +116,10 @@ const Memory2PlayersReact = ()=>{
         // =========================== Make flash Player A =========================================
         let playerA = document.getElementById("playerA");
         playerAFlash = setInterval(function(){playerA.classList.toggle ("hide")}, 500);
-        return ()=>clearInterval(playerAFlash);
-        
+        return ()=>{
+            clearInterval(playerAFlash);
+            clearInterval(playerBFlash);
+        }
     },[]);
 
     

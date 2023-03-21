@@ -65,6 +65,7 @@ return(
                         <li><Link to="/penduIntro">Pendu</Link></li>
                         <li><Link to="/colorBallInfo">Balles de couleurs</Link></li>
                         <li><Link to="/memory">Memory</Link></li>
+                        <li><Link to="/4aLaSuite">4 à la suite</Link></li>
                     </nav>
                 </li>
                 <li><Link to="/contact">Contact</Link></li>

@@ -231,6 +231,10 @@ main p{
     background-image: url(../images/Memory.png);
     background-size: 20%;
 }
+#puissance4Button{
+    background-image: url(../images/puissance4.jpg);
+    background-size: 20%;
+}
 .buttonTitle{
     font-size: 2em;
     color: black;
@@ -491,6 +495,7 @@ footer{
     height: 40px;
     color: white;
     font-size: .7em;
+    z-index: 2000;
 }
 /* ========== END FOOTER ========== */
 /* ========== START MEDIA QUERY ========== */
