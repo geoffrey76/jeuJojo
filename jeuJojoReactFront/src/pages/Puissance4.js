@@ -339,7 +339,7 @@ const Puissance4 = ()=>{
     //================================== Drag token ===================================================
     function drag(ev) {
         ev.dataTransfer.setData("text", ev.target.id);
-        console.log(ev.dataTransfer)
+        alert ("coucou")
     }
     function allowDrop(ev) {
         ev.preventDefault();
