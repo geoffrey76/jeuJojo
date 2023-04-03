@@ -561,10 +561,11 @@ const Puissance4 = ()=>{
             <div id='mainPuissance4'>
                 <div id='titleContainer'>
                     <h1 id='title'>FAITES GLISSER LE JETON DANS LA COLONNE POUR PLACER VOTRE JETON</h1>
-                    <DragDropContainer targetKey="foo" id='tokenContainer'>
-                        <div  id='token' className={tokenClass.current}></div>
-                        
-                    </DragDropContainer>
+                    <div id='tokenContainer'>
+                        <DragDropContainer targetKey="foo" >
+                            <div  id='token' className={tokenClass.current}></div>
+                        </DragDropContainer>
+                    </div>
                 </div>
                 <div id='chosenColumn'>
                     {chosenColumnArray.map(element=>
