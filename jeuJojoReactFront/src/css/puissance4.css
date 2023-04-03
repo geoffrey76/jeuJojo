@@ -46,25 +46,28 @@
     justify-content: space-around;
     width: 352px;
 }
-#redToken{
-    touch-action: none;
+.redToken{
     width: 40px;
     height: 40px;
     background-color: red;
     border-radius: 50%;
     z-index: 100;
 }
-#yellowToken{
-    touch-action: none;
+.yellowToken{
     width: 40px;
     height: 40px;
     background-color: yellow;
     border-radius: 50%;
-    display: none;
     z-index: 100;
 }
-#redToken:hover, #yellowToken:hover{
+.redToken:hover, .yellowToken:hover{
     cursor: pointer;
+}
+#movingToken{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    z-index: 100;
 }
 .hide{
     visibility: hidden; 
@@ -109,11 +112,15 @@
         width: 60px;
         margin: 0;
     }
-    #redToken{
+    .redToken{
         width: 60px;
         height: 60px;
     }
-    #yellowToken{
+    .yellowToken{
+        width: 60px;
+        height: 60px;
+    }
+    #movingToken{
         width: 60px;
         height: 60px;
     }
