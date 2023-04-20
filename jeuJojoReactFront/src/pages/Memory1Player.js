@@ -25,6 +25,7 @@ const Memory1Player = ()=>{
     useEffect(()=>{
         const loadBestScore = async ()=>{
             const response =  await axios.get('/api/getBestScore');
+            console.log(response);
             const bestScoreData = response.data;
             if (bestScoreData.length !== 0){
                 setBestScoreName (bestScoreData[0].bestScoreName);
