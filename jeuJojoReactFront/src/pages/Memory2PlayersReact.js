@@ -108,18 +108,29 @@ const Memory2PlayersReact = ()=>{
                 cardContainer[i].style.top = "0px";
             }
             
-},7050);
+        },7050);
+        setTimeout(function(){
+            if (cardContainer[0].style.left !== "0px" || cardContainer[23].style.top !== "0px"){
+                for (let i=0; i<=23; i++){
+                    cardContainer[i].style.left = "0px";
+                    cardContainer[i].style.top = "0px";
+                }
+            }
+            
+        },8000);
+
         //-----------------------Cursor visible and possible to click----------------------------------
         setTimeout(()=>{
             memoryGrid.classList.remove ("cursorInvisible");
+            // =========================== Make flash Player A =========================================
+            let playerA = document.getElementById("playerA");
+            playerAFlash = setInterval(function(){playerA.classList.toggle ("hide")}, 500);
+            return ()=>{
+                clearInterval(playerAFlash);
+                clearInterval(playerBFlash);
+            }
         },7000)
-        // =========================== Make flash Player A =========================================
-        let playerA = document.getElementById("playerA");
-        playerAFlash = setInterval(function(){playerA.classList.toggle ("hide")}, 500);
-        return ()=>{
-            clearInterval(playerAFlash);
-            clearInterval(playerBFlash);
-        }
+        
     },[]);
 
     

@@ -1,4 +1,5 @@
-import React from 'react';
+import { React, useState, useEffect, useRef } from 'react';
+import axios from "axios";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/memory.css';
@@ -17,20 +18,38 @@ import watermelon from '../images/imgMemory/watermelon.png';
 
 
 const Memory1Player = ()=>{
+    const [bestScore, setBestScore] = useState(0);
+    const [bestScoreName, setBestScoreName] = useState([""]);
+    const [attempsDisplay, setAttempsDisplay] = useState (0);
+    //-------------------- Retrieve best score and name from back-end ------------------------------
+    useEffect(()=>{
+        const loadBestScore = async ()=>{
+            const response =  await axios.get('/api');
+            const bestScoreData = response.data;
+            if (bestScoreData.length !== 0){
+                setBestScoreName (bestScoreData[0].bestScoreName);
+                setBestScore (bestScoreData[0].bestScore);
+            }
+        }   
+        loadBestScore();
+    },[]);
+    //-------------------- send best score when it changes ------------------------------------
+    function sendBestScore(){
+        axios.post ("/api/newBestScore", {bestScore: bestScore, bestScoreName: bestScoreName});
+        document.getElementById("restartButtonMemory1").style.display = "block";
+        document.getElementById("bestScoreChange").style.display = "none";
+    }
     
-    
+    //---------------------- End rertrieve best score ------------------------
     let imageArray = [baleine, baloon, birds, boats, chinese_deco, dolfins, fishes, flowers, palm_trees, red_flowers, sunflowers, watermelon];
     let cardNumbers = [];
     let imageToFind =[];
     let imagesToCompare=[];
     let indicesToCompare=[];
-    let attemps = 0;
+    const attemps = useRef(0);
+    // let attemps = 0;
     let secondArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
-    
-    
-    
     let goodCards = 0;
-    let s="";
     // ========================== Built Array with different numbers between 0 and 23 ==================
     let arrayInit = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
     let i=0
@@ -47,8 +66,6 @@ const Memory1Player = ()=>{
     }
     
     // ============================EventListener on all cards + test the cards =============================================
-    // for (let i=0; i<=23; i++){
-        // cardContainer[i].addEventListener ("click", 
         function cardCompare(i){
             let memoryGrid = document.getElementById("memoryGrid")
             let attempsNumber = document.getElementById ("attempsNumber");
@@ -56,7 +73,7 @@ const Memory1Player = ()=>{
             let cardContainer = document.getElementsByClassName ("cardContainer");
             let centerPart = document.getElementById ("centerPart");
             cardContainer[i].style.animation = "cardFlip 1s forwards";
-                cardContainer[i].style.animation = "cardFlip 1s forwards";
+            cardContainer[i].style.animation = "cardFlip 1s forwards";
                 
                 setTimeout (function(){cardContainer[i].style.backgroundImage = `url(${imageToFind[i]})`;},300);
                 indicesToCompare.push(i);
@@ -64,11 +81,11 @@ const Memory1Player = ()=>{
                 cardContainer[indicesToCompare[0]].classList.add ("cursorInvisible");
                 // -------------------------------- Compare two cards ------------------------------
                 if (imagesToCompare[0]  === imagesToCompare[1]){
-                    attemps++;
-                    if (attemps >1){
-                        attempsNumberContainer.children[0].innerHTML = "Nombre d'essais:";
+                    attemps.current++;
+                    if (attemps.current >1){
+                        document.getElementById("attempsNumberContainer").firstChild.innerHTML = "<p>Nombre d'essais:</p>"
                     }
-                    attempsNumber.innerHTML = attemps;
+                    attempsNumber.innerHTML = attemps.current;
                     goodCards++;
                     cardContainer[indicesToCompare[0]].classList.add ("cursorInvisible");
                     cardContainer[indicesToCompare[1]].classList.add ("cursorInvisible");
@@ -78,28 +95,32 @@ const Memory1Player = ()=>{
                         imagesToCompare=[];
                         indicesToCompare=[];
                     },1000)
-                    
-                    
+                
                     // ---------------------- End of the game - Display the result ------------------------
                     if (goodCards === 12){
                         centerPart.style.display = "block";
                         attempsNumberContainer.style.display = "none";
                         memoryGrid.classList.toggle ("victory");
-                        if (attemps === 1){s=""
-                        }else {s="s"}
-                        memoryGrid.innerHTML  = `<p>Vous avez fait ${attemps} essai${s}</p>`+
-                        '<button id="restartButton" onClick="window.location.reload()">RECOMMENCER</button>';
+                        if (attemps.current < bestScore || bestScore === 0 || bestScore === null){
+                            setBestScore (attemps.current);
+                            document.getElementById("bestScoreChange").style.display = "block";
+                        }else{
+                            document.getElementById("restartButtonMemory1").style.display = "block";
+                        }
+                        setAttempsDisplay (attemps.current);
+                        document.getElementById("victory").style.display = "block";
+                        document.getElementById("centerPart").style.display = "none";
                     }
                 }else{
-                    // -----------------------------If the 2 cards are diffetrents ---------------------
+                    // -----------------------------If the 2 cards are differents ---------------------
                     if (imagesToCompare.length >= 2){
                         memoryGrid.classList.add ("cursorInvisible");
-                        attemps++;
-                        if (attemps >1){
-                            attempsNumberContainer.children[0].innerHTML = "Nombre d'essais:";
+                        attemps.current++;
+                        if (attemps.current >1){
+                            document.getElementById("attempsNumberContainer").firstChild.innerHTML = "<p>Nombre d'essais:</p>"
                         }
-                        if (attemps>99){attempsNumber.style.fontSize = "2em"};
-                        attempsNumber.innerHTML = attemps;
+                        if (attemps.current>99){attempsNumber.style.fontSize = "2em"};
+                        attempsNumber.innerHTML = attemps.current;
                         setTimeout (function(){
                             cardContainer[indicesToCompare[0]].style.animation = "cardFlipBack 1s forwards";
                             cardContainer[indicesToCompare[1]].style.animation = "cardFlipBack 1s forwards";
@@ -116,45 +137,35 @@ const Memory1Player = ()=>{
                     }
                 }
         }
-        // );
-    // }
+
+     //========================================= Refresh page function ================================
+    function refreshPage(){window.location.reload() }
+   
     return(
         <div id="mainPart">
             <Header />
             <div id="centerPart">
                 <aside id="attempsNumberContainer">
                     <p>Nombre d'essai:</p>
-                    <p id="attempsNumber">0</p>
+                    <p id="attempsNumber">{attemps.current}</p>
+                    <p>Meilleur Score:</p>
+                    <p id="bestScoreName">{bestScoreName}</p>
+                    <p id="bestScore">{bestScore}</p>
                 </aside>
                 <main id="memoryGrid" className="memoryGrid">
                     {secondArray.map(listItem =>
                         <div key={listItem} className="cardContainer" onClick={()=>cardCompare(listItem)}></div>
                     )}
-                    {/* <div className="cardContainer" onClick={()=>cardCompare(0)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(1)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(2)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(3)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(4)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(5)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(6)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(7)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(8)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(9)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(10)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(11)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(12)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(13)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(14)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(15)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(16)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(17)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(18)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(19)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(20)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(21)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(22)}></div>
-                    <div className="cardContainer" onClick={()=>cardCompare(23)}></div> */}
                 </main> 
+            </div>
+            <div id='victory'>
+                <p>Tu as fait {attempsDisplay} essais</p>
+                <div id='bestScoreChange'>
+                    <label>Tu as le meilleur score. Entre ton pseudo</label>
+                    <input type="text" onChange={e => setBestScoreName(e.target.value)} autoFocus></input>
+                    <button type="button" onClick={sendBestScore}>OK</button>
+                </div>
+                <button type="button" id="restartButtonMemory1" onClick={refreshPage}>Recommencer</button>
             </div>
             <Footer />      
         </div>

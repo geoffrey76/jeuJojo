@@ -12,15 +12,19 @@
 aside{
     padding: 65px 0px 45px 0px;
     color: white;
-    font-size: 1.5em;
+    font-size: 1.3em;
     display: flex;
     flex-direction: column;
     justify-content: right;
+    margin-right: 5px;
 }
 aside p{
     margin: 0;
     padding: 0;
     text-align: right;
+}
+#bestScoreName{
+    word-break: break-all;
 }
 #attempsNumber{
     font-size: 3em;
@@ -65,13 +69,23 @@ aside p{
     align-content: center;
     color: crimson;
 }
-#restartButton{
+#victory{
+    display: none;
+    color: white;
+    font-size: 1.3em;
+    padding: 65px 20px 45px 20px;
+}
+#bestScoreChange{
+    display: none;
+}
+#restartButtonMemory1{
     font-size: 3rem;
     width: 100%;
     margin: auto;
     background-color: crimson;
     color: white;
     height: 60px;
+    display: none;
 }
 #restartButton:hover{
     cursor: pointer;

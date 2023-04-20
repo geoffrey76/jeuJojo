@@ -9,6 +9,7 @@ app.use (express.json());
 
 dotenv.config();
 
+
 // app.get('/', (req, res) => {
 //     res.send('Hello World!')
 //   })
@@ -17,6 +18,28 @@ dotenv.config();
 app.listen(port, () => {
   console.log(`server listening on port ${port}`)
 })
+
+//---------------------------- Connect to DB -----------------------------
+const uri = process.env.STRING_URI;
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+client.connect((err, db) => {
+    console.log('connecté avec succès à DB');
+    const bestScoreMemory1Player = db.db("jeuJojo").collection('memory1Player');
+    if (err || !db) { return false; }
+    //--------------------- Send best score + name to front (memory 1 player) ------------------------
+    app.get('/api/', async (req, res) => {
+      const response = await bestScoreMemory1Player.find({}).toArray();
+      res.json(response);
+      console.log(response);
+    });
+    //-------------------- Retrieve new best score + name from front (memory 1 player) and set in DB-------------------
+    app.post('/api/newBestScore', async (req, res) => {
+      const bestScore = req.body;
+      console.log (bestScore);
+      bestScoreMemory1Player.replaceOne({},bestScore);
+    })
+});
+
 
 //---------------------------- Send mail contact ------------------------
 app.post('/api/mailForm', async (req, res) => {
