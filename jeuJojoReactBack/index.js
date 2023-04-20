@@ -27,7 +27,7 @@ client.connect((err, db) => {
     const bestScoreMemory1Player = db.db("jeuJojo").collection('memory1Player');
     if (err || !db) { return false; }
     //--------------------- Send best score + name to front (memory 1 player) ------------------------
-    app.get('/api/', async (req, res) => {
+    app.get('/api/getBestScore', async (req, res) => {
       const response = await bestScoreMemory1Player.find({}).toArray();
       res.json(response);
       console.log(response);
