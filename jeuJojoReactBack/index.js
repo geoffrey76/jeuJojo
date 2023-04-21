@@ -25,6 +25,11 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 client.connect((err, db) => {
     console.log('connecté avec succès à DB');
     const bestScoreMemory1Player = db.db("jeuJojo").collection('memory1Player');
+    async ()=>{
+      const test = await bestScoreMemory1Player.find({}).toArray();
+      console.log (test);
+    }
+    
     if (err || !db) { 
       console.log("erreur connection DB")
       return false; }
