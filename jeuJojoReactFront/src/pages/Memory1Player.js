@@ -33,9 +33,7 @@ const Memory1Player = ()=>{
         //     }
         // }   
         // loadBestScore();
-        console.log("coucou")
         axios.get('/api/getBestScore').then((response)=>{
-            console.log(response);
             const bestScoreData = response.data;
             if (bestScoreData.length !== 0){
                 setBestScoreName (bestScoreData[0].bestScoreName);
