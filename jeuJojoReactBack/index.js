@@ -26,7 +26,7 @@ const uri = `mongodb+srv://${process.env.MONOGODB_USERNAME}:${process.env.MONGOD
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 client.connect((err, db) => {
     console.log('connecté avec succès à DB');
-    const bestScoreMemory1Player = db.db("jeuJojo").collection('memory1Player');
+    const bestScoreMemory1Player = client.db("jeuJojo").collection('memory1Player');
     if (err || !db) { 
       console.log("erreur connection DB")
       return false; }
