@@ -35,8 +35,7 @@ client.connect((err, db) => {
   app.get('/api/getBestScore', async (req, res) => {
     
   const response = await bestScoreMemory1Player.find({}).toArray();
-  res.json("coucou");
-  // res.json(response);
+  res.json(response);
   console.log(response);
   });
   //-------------------- Retrieve new best score + name from front (memory 1 player) and set in DB-------------------

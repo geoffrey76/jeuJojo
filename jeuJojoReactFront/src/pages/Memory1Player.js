@@ -33,7 +33,7 @@ const Memory1Player = ()=>{
         //     }
         // }   
         // loadBestScore();
-        axios.get('/api/getBestScore').then(response=>{
+        axios.get('/api/getBestScore').then((response)=>{
             console.log(response);
             const bestScoreData = response.data;
             if (bestScoreData.length !== 0){
