@@ -23,16 +23,24 @@ const Memory1Player = ()=>{
     const [attempsDisplay, setAttempsDisplay] = useState (0);
     //-------------------- Retrieve best score and name from back-end ------------------------------
     useEffect(()=>{
-        const loadBestScore = async ()=>{
-            const response =  await axios.get('/api/getBestScore');
+        // const loadBestScore = async ()=>{
+        //     const response =  await axios.get('/api/getBestScore');
+        //     console.log(response);
+        //     const bestScoreData = response.data;
+        //     if (bestScoreData.length !== 0){
+        //         setBestScoreName (bestScoreData[0].bestScoreName);
+        //         setBestScore (bestScoreData[0].bestScore);
+        //     }
+        // }   
+        // loadBestScore();
+        axios.get('/api/getBestScore').then(response=>{
             console.log(response);
             const bestScoreData = response.data;
             if (bestScoreData.length !== 0){
                 setBestScoreName (bestScoreData[0].bestScoreName);
                 setBestScore (bestScoreData[0].bestScore);
             }
-        }   
-        loadBestScore();
+        })
     },[]);
     //-------------------- send best score when it changes ------------------------------------
     function sendBestScore(){

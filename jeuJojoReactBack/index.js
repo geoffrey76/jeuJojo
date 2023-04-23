@@ -30,20 +30,20 @@ client.connect((err, db) => {
     if (err || !db) { 
       console.log("erreur connection DB")
       return false; }
-    //--------------------- Send best score + name to front (memory 1 player) ------------------------
-    app.get('/api/getBestScore', async (req, res) => {
-      const response = await bestScoreMemory1Player.find({}).toArray();
-      res.json(response);
-      console.log(response);
-    });
-    //-------------------- Retrieve new best score + name from front (memory 1 player) and set in DB-------------------
-    app.post('/api/newBestScore', async (req, res) => {
-      const bestScore = req.body;
-      console.log (bestScore);
-      bestScoreMemory1Player.replaceOne({},bestScore);
-    })
-});
-
+   
+  //--------------------- Send best score + name to front (memory 1 player) ------------------------
+  app.get('/api/getBestScore', async (req, res) => {
+  const response = await bestScoreMemory1Player.find({}).toArray();
+  res.json(response);
+  console.log(response);
+  });
+  //-------------------- Retrieve new best score + name from front (memory 1 player) and set in DB-------------------
+  app.post('/api/newBestScore', async (req, res) => {
+    const bestScore = req.body;
+    console.log (bestScore);
+    bestScoreMemory1Player.replaceOne({},bestScore);
+  })
+}); 
 
 //---------------------------- Send mail contact ------------------------
 app.post('/api/mailForm', async (req, res) => {
