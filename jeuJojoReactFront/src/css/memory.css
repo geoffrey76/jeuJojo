@@ -29,6 +29,9 @@ aside p{
 #attempsNumber{
     font-size: 3em;
 }
+.cursorInvisible{
+    pointer-events: none;
+}
 .memoryGrid{
     margin: auto;
     padding: 65px 20px 45px 20px;
@@ -43,12 +46,13 @@ aside p{
     grid-template-rows: auto auto auto auto;
     gap: 10px;
     perspective: 3000px;
+    pointer-events: none;
 }
 .memoryGrid:hover{
     cursor: pointer;
 }
-.cursorInvisible{
-    pointer-events: none;
+.cursorVisible{
+    pointer-events: auto;
 }
 .cardContainer{
     background-color: white;
