@@ -21,15 +21,19 @@ const Memory1Player = ()=>{
     const [bestScore, setBestScore] = useState(0);
     const [bestScoreName, setBestScoreName] = useState([""]);
     const [attempsDisplay, setAttempsDisplay] = useState (0);
+    let memoryGrid = document.getElementById("memoryGrid")
     //-------------------- Retrieve best score and name from back-end ------------------------------
     useEffect(()=>{
+        //----------------------------Remove cursor and not possible to click---------------------------------
+        memoryGrid.classList.add ("cursorInvisible");//-----------Classlist in memory2Players.css---------
+        //---------------------------------------------------------------------------------------
         axios.get('/api/getBestScore').then((response)=>{
             const bestScoreData = response.data;
             if (bestScoreData.length !== 0){
                 setBestScoreName (bestScoreData[0].bestScoreName);
                 setBestScore (bestScoreData[0].bestScore);
             }
-            document.getElementById("memoryGrid").classList.add ("cursorVisible");
+            memoryGrid.classList.remove("cursorInvisible");//-----------Classlist in memory2Players.css---------
         })
     },[]);
     //-------------------- send best score when it changes ------------------------------------
@@ -66,7 +70,7 @@ const Memory1Player = ()=>{
     
     // ============================EventListener on all cards + test the cards =============================================
         function cardCompare(i){
-            let memoryGrid = document.getElementById("memoryGrid")
+            // let memoryGrid = document.getElementById("memoryGrid")
             let attempsNumber = document.getElementById ("attempsNumber");
             let attempsNumberContainer = document.getElementById ("attempsNumberContainer");
             let cardContainer = document.getElementsByClassName ("cardContainer");

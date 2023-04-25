@@ -46,13 +46,9 @@ aside p{
     grid-template-rows: auto auto auto auto;
     gap: 10px;
     perspective: 3000px;
-    pointer-events: none;
 }
 .memoryGrid:hover{
     cursor: pointer;
-}
-.cursorVisible{
-    pointer-events: auto;
 }
 .cardContainer{
     background-color: white;
