@@ -1,3 +1,6 @@
+body{
+    overscroll-behavior: none 
+}
 #mainPuissance4{
     padding-top: 80px;
     overscroll-behavior: contain;
