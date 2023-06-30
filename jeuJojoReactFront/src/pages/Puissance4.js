@@ -344,18 +344,19 @@ const Puissance4 = ()=>{
     function drop(e){
         
         tokenNumber.current++
-        
+        console.log(e.target)
         e.target.appendChild(document.createElement("div"));
         e.target.firstChild.id = "movingToken";
         let movingToken = document.getElementById('movingToken');
         movingToken.style.backgroundColor = playingToken.current;
-        
-        for(let i=0; i<7; i++){
+        console.log(document.getElementsByClassName("chosenColumnToken"))
+        // for(let i=0; i<7; i++){
             //-------------------------- Select the column to drop the token ------------------------
-            if(document.getElementsByClassName("chosenColumnToken")[i].children.length == 1){
-                column = i;
-            }
-        }
+            // if(document.getElementsByClassName("chosenColumnToken")[i].children.length == 1){
+                column = Number(e.target.id);
+                console.log(typeof(column))
+            // }
+        // }
         console.log(column)
         let element = 0;
         let tokens = gridToken;
