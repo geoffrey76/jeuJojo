@@ -312,7 +312,7 @@ const Puissance4 = ()=>{
     let redToken = undefined;
     let yellowToken = undefined;
     let positionToMove = 0;
-    let column = 0;
+    let column = undefined;
     const redTokenFlash = useRef(0);
     const yellowTokenFlash = useRef(0);
    
