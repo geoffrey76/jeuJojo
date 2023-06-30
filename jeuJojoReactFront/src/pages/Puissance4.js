@@ -299,6 +299,8 @@
 
 
 import React, { useEffect, useState, useRef, TouchEvent } from 'react';
+import useSound from 'use-sound';
+import tadaSound from '../sounds/tada-fanfare-a-6313.mp3'
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../css/puissance4.css';
@@ -313,14 +315,16 @@ const Puissance4 = ()=>{
     let column = 0;
     const redTokenFlash = useRef(0);
     const yellowTokenFlash = useRef(0);
-    
+   
     const [gridToken, setGridToken] = useState([]);
     const tokenNumber = useRef(0);
     const playingToken = useRef("red");
     const winner = useRef("");
+    const [winningSound] = useSound(tadaSound);
     const tokenClass = useRef("redToken")
     let playAgain = false;
     let chosenColumnArray =[0, 1, 2, 3, 4, 5, 6];
+
    
     useEffect(()=>{
         window.scrollTo(0, 0);
@@ -522,6 +526,7 @@ const Puissance4 = ()=>{
                 setGridToken([...old])
                 //------------------------------------- Display winner ------------------------
                 if (winner.current !== ""){
+                    winningSound();
                     if (winner.current === "red"){winner.current = "rouges".toUpperCase()}else{winner.current = "jaunes".toUpperCase()};
                     document.getElementById("titleContainer").style.display = "none";
                     document.getElementById("chosenColumn").style.display = "none";
