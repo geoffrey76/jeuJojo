@@ -349,15 +349,10 @@ const Puissance4 = ()=>{
         e.target.firstChild.id = "movingToken";
         let movingToken = document.getElementById('movingToken');
         movingToken.style.backgroundColor = playingToken.current;
-        console.log(document.getElementsByClassName("chosenColumnToken"))
-        // for(let i=0; i<7; i++){
-            //-------------------------- Select the column to drop the token ------------------------
-            // if(document.getElementsByClassName("chosenColumnToken")[i].children.length == 1){
-                column = Number(e.target.id);
-                console.log(typeof(column))
-            // }
-        // }
-        console.log(column)
+        console.log(document.getElementsByClassName("chosenColumnToken").length)
+        //-------------------------- Select the column to drop the token -----------------------
+        column = Number(e.target.id);
+        
         let element = 0;
         let tokens = gridToken;
         redToken = document.getElementById("redToken");
@@ -576,7 +571,10 @@ const Puissance4 = ()=>{
                 <div id='chosenColumn'>
                     {chosenColumnArray.map(element=>
                         <DropTarget targetKey="foo" key={element+100}
-                            onHit={drop}>
+                            onHit={(e)=>{if (e.target.className!="droptarget" && e.target.className!="droptarget highlighted"){drop(e)}}}
+                            onDragEnter={(e)=>console.log(e.target)} 
+                            >
+                                
                             <div  id={element} className='chosenColumnToken'></div>   
                         </DropTarget>
                     )}
